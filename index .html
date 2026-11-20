@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PlayBox Gaming Lounge · Kankroli</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#07090a;--panel:#0e1310;--panel2:#121a15;--line:#1e2c23;--lime:#7dff3a;--lime2:#5bd324;--pink:#ff3d8b;--amber:#ffb02e;--tx:#e9f0ea;--mu:#8b9b91;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:70px;scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 16px/1.55 Inter,system-ui,sans-serif}
+h1,h2,h3,.dis{font-family:Oswald,Impact,'Arial Narrow',sans-serif;text-transform:uppercase;letter-spacing:.02em;margin:0;line-height:1.05}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:rgba(7,9,10,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:22px;height:58px}
+.logo{font:700 24px Oswald,sans-serif;letter-spacing:.04em;text-decoration:none}
+.logo b{color:var(--lime)}
+nav a.l{color:var(--mu);text-decoration:none;font-size:14px;font-weight:500}
+nav a.l:hover{color:var(--tx)}
+.sp{flex:1}
+.btn{display:inline-block;background:var(--lime);color:#06130a;border:0;border-radius:4px;padding:12px 22px;font:600 15px Inter,sans-serif;cursor:pointer;text-decoration:none}
+.btn:hover{background:#9bff66}
+.btn.o{background:none;color:var(--lime);border:1px solid var(--lime2)}
+.btn:focus-visible,.slot:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.star:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:10px;align-items:center;padding:44px 0 30px}
+.hero h1{font-size:clamp(44px,8vw,84px);font-weight:700}
+.hero p{color:var(--mu);max-width:430px;margin:16px 0 26px}
+.hero .row{display:flex;gap:12px;flex-wrap:wrap}
+.tag{display:inline-block;border:1px solid var(--lime2);color:var(--lime);font-size:12px;font-weight:600;padding:2px 9px;border-radius:3px;margin-bottom:14px}
+.art{border-radius:10px;overflow:hidden;border:1px solid var(--line);position:relative}
+.art svg{display:block;width:100%;height:auto}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:8px;background:var(--panel);margin:18px 0 8px}
+.stats div{padding:18px;text-align:center;border-right:1px solid var(--line)}
+.stats div:last-child{border:0}
+.stats b{display:block;font:700 28px Oswald,sans-serif;color:var(--lime)}
+.stats span{color:var(--mu);font-size:13px}
+section{padding:46px 0 6px}
+.h{display:flex;align-items:baseline;gap:12px;margin-bottom:20px;border-left:3px solid var(--lime);padding-left:12px}
+.h h2{font-size:28px}
+.h span{color:var(--mu);font-size:14px}
+.days{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.day{background:var(--panel);border:1px solid var(--line);color:var(--tx);border-radius:6px;padding:9px 16px;cursor:pointer;font:500 14px Inter,sans-serif}
+.day[aria-pressed=true]{border-color:var(--lime);color:var(--lime);background:#0c1a10}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.slot{background:var(--panel2);border:1px solid var(--lime2);border-radius:8px;color:var(--tx);padding:12px 14px;text-align:left;cursor:pointer;font:inherit}
+.slot b{display:block;font:700 20px Oswald,sans-serif}
+.slot small{color:var(--lime);font-size:13px}
+.slot:hover:not(:disabled){background:#10230f}
+.slot.sel{background:var(--lime);color:#06130a}
+.slot.sel small{color:#06130a}
+.slot:disabled{cursor:not-allowed;border-color:var(--line);color:#55645b;background:repeating-linear-gradient(135deg,#0d120f 0 8px,#0a0e0b 8px 16px)}
+.slot:disabled small{color:var(--pink)}
+.wk{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.wk table{border-collapse:separate;border-spacing:4px;min-width:680px;width:100%}
+.wk th{font:500 12px Inter,sans-serif;color:var(--mu);padding:4px;text-align:center;white-space:nowrap}
+.wk th.t{text-align:right;padding-right:8px}
+.wc{width:100%;min-height:46px;border-radius:6px;border:1px solid var(--lime2);background:var(--panel2);color:var(--lime);font:600 12px Inter,sans-serif;cursor:pointer;padding:4px;line-height:1.25}
+.wc small{display:block;font-weight:400;color:var(--mu);font-size:11px}
+.wc:hover:not(:disabled){background:#10230f}
+.wc.sel{background:var(--lime);color:#06130a}.wc.sel small{color:#06130a}
+.wc:disabled{cursor:not-allowed;border-color:var(--line);color:var(--pink);background:repeating-linear-gradient(135deg,#0d120f 0 8px,#0a0e0b 8px 16px)}
+.wc.p:disabled{color:#55645b}
+.wc:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.legend{display:flex;gap:18px;color:var(--mu);font-size:13px;margin:14px 0 0;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px;margin-top:18px}
+.f{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:14px 0}
+label{display:block;font-size:13px;color:var(--mu);margin-bottom:5px}
+input,select,textarea{width:100%;background:#0a0f0c;border:1px solid var(--line);color:var(--tx);border-radius:6px;padding:11px 12px;font:inherit}
+.note{color:var(--mu);font-size:13px;margin-top:10px}
+.ok{border-color:var(--lime2);background:#0b1a0f}
+.err{color:var(--pink);font-size:14px;margin-top:8px;min-height:1px}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+.g{border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--panel)}
+.g .c{aspect-ratio:3/4;display:flex;align-items:flex-end;padding:12px;font:700 26px/1 Oswald,sans-serif;text-transform:uppercase}
+.g .m{padding:10px 12px;font-size:13px;color:var(--mu);display:flex;justify-content:space-between}
+.g .m b{color:var(--lime);font-weight:600}
+.price{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.pc{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px}
+.pc.hot{border-color:var(--lime);box-shadow:0 0 0 1px var(--lime) inset}
+.pc h3{font-size:18px;color:var(--mu)}
+.pc .n{font:700 46px Oswald,sans-serif;color:var(--lime);margin:8px 0 2px}
+.pc .n small{font-size:15px;color:var(--mu);font-weight:500}
+.pc p{margin:8px 0 0;color:var(--mu);font-size:14px}
+.stars{display:flex;gap:4px}
+.star{background:none;border:0;font-size:28px;color:#33423a;cursor:pointer;padding:0 2px}
+.star.on{color:var(--amber)}
+.fb{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.rv{border-bottom:1px solid var(--line);padding:12px 0}
+.rv:last-child{border:0}
+.rv .s{color:var(--amber);font-size:14px}
+.rv p{margin:4px 0 0;font-size:15px}
+.rv small{color:var(--mu)}
+footer{margin-top:60px;border-top:1px solid var(--line);padding:26px 0 36px;color:var(--mu);font-size:14px}
+@media(max-width:760px){.hero,.fb{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.stats div:nth-child(2){border-right:0}.stats div:nth-child(-n+2){border-bottom:1px solid var(--line)}nav a.l{display:none}}
+@media(prefers-reduced-motion:no-preference){.sun{animation:glow 4s ease-in-out infinite alternate}@keyframes glow{to{opacity:.82}}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="#top">PLAY<b>BOX</b></a><a class="l" href="#slots">Slots</a><a class="l" href="#games">Games</a><a class="l" href="#prices">Prices</a><a class="l" href="#feedback">Feedback</a><span class="sp"></span><a class="btn" href="#slots">Book now</a></div></nav>
+
+<main id="top" class="wrap">
+<div class="hero">
+ <div>
+  <span class="tag">GTA VI now playing</span>
+  <h1>Vice City.<br>Your hour.</h1>
+  <p>Big screen, PS5, comfy sofa. Pick a free slot, reserve it in a minute and walk in. No queue, no guessing.</p>
+  <div class="row"><a class="btn" href="#slots">See free slots</a><a class="btn o" href="#prices">View prices</a></div>
+ </div>
+ <div class="art">
+  <svg viewBox="0 0 600 440" role="img" aria-label="Neon sunset over a palm-lined skyline">
+   <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#14062b"/><stop offset=".45" stop-color="#8a1c6e"/><stop offset=".75" stop-color="#ff3d8b"/><stop offset="1" stop-color="#ffb02e"/></linearGradient>
+   <linearGradient id="sn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe36b"/><stop offset="1" stop-color="#ff3d8b"/></linearGradient>
+   <linearGradient id="wt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a0a3d"/><stop offset="1" stop-color="#07090a"/></linearGradient></defs>
+   <rect width="600" height="440" fill="url(#sky)"/>
+   <circle class="sun" cx="300" cy="250" r="118" fill="url(#sn)"/>
+   <g fill="#8a1c6e"><rect x="170" y="262" width="260" height="5"/><rect x="170" y="280" width="260" height="7"/><rect x="170" y="300" width="260" height="9"/><rect x="170" y="322" width="260" height="12"/></g>
+   <g fill="#1a0b2e"><rect x="40" y="300" width="36" height="60"/><rect x="82" y="270" width="30" height="90"/><rect x="118" y="310" width="40" height="50"/><rect x="440" y="290" width="34" height="70"/><rect x="480" y="262" width="40" height="98"/><rect x="526" y="305" width="44" height="55"/></g>
+   <rect y="352" width="600" height="88" fill="url(#wt)"/>
+   <g stroke="#7dff3a" stroke-opacity=".55" stroke-width="2"><path d="M60 372h480"/><path d="M110 392h380"/><path d="M170 414h260"/></g>
+   <g fill="#07090a"><path d="M92 360c4-70 2-120-6-170l10-2c8 50 10 100 6 172z"/><path d="M90 192c-30-14-58-8-78 14 28-12 52-8 78 0zM92 190c26-26 56-28 84-14-30-2-54 4-84 18zM92 188c-6-26 6-46 24-60-12 22-10 40-6 62zM90 190c-20-22-20-44-6-64 0 24 6 40 14 62z"/><path d="M512 360c-2-60 0-110 8-160l-10-2c-10 50-12 100-8 162z"/><path d="M516 202c30-14 56-8 76 14-28-12-50-8-76 0zM514 200c-26-26-54-28-82-14 30-2 52 4 82 18zM514 198c6-26-6-46-24-60 12 22 10 40 6 62z"/></g>
+   <text x="300" y="52" text-anchor="middle" font-family="Oswald,Impact,sans-serif" font-size="30" font-weight="700" letter-spacing="6" fill="#fff" fill-opacity=".9">LEONIDA NIGHTS</text>
+  </svg>
+ </div>
+</div>
+<div class="stats"><div><b>PS5</b><span>Latest console</span></div><div><b>4K</b><span>Big-screen TV</span></div><div><b>₹80</b><span>Opening price / hour</span></div><div><b>1 min</b><span>To reserve a slot</span></div></div>
+
+<section id="slots">
+ <div class="h"><h2>Pick a time slot</h2><span id="live">Checking live availability…</span></div>
+ <div class="panel ok" id="offer" style="margin:0 0 16px"></div>
+ <div class="days" id="days"></div>
+ <div class="grid" id="grid"></div>
+ <div class="legend"><span><i style="background:var(--lime)"></i>Free</span><span><i style="background:var(--pink)"></i>Booked</span><span><i style="background:#55645b"></i>Time passed</span></div>
+ <div class="note">Tap more than one slot to book 2, 3 or more hours.</div>
+ <div class="panel" id="book" hidden>
+  <h3 id="bt" style="font-size:22px"></h3>
+  <div class="f">
+   <div><label for="nm">Your name</label><input id="nm" autocomplete="name"></div>
+   <div><label for="ph">Phone / WhatsApp</label><input id="ph" inputmode="tel" autocomplete="tel"></div>
+   <div><label for="gm">Game</label><select id="gm"></select></div>
+  </div>
+  <button class="btn" id="go">Reserve these slots</button>
+  <div class="err" id="er" role="alert"></div>
+  <div class="note">Pay at the counter or by UPI. Your slot is held for 10 minutes after the start time.</div>
+ </div>
+ <div class="panel ok" id="done" hidden></div>
+</section>
+
+<section id="games">
+ <div class="h"><h2>Games on the shelf</h2><span>Ask us about new titles</span></div>
+ <div class="games" id="gl"></div>
+</section>
+
+<section id="prices">
+ <div class="h"><h2>Prices</h2><span>Simple, no hidden charges</span></div>
+ <div class="price">
+  <div class="pc"><h3>Quick play</h3><div class="n">₹60 <small>/ 30 min</small></div><p>Try a game or finish a mission.</p></div>
+  <div class="pc hot"><h3>Opening offer</h3><div class="n">₹80 <small>/ hr</small></div><p>First 10 customers from opening day, 2 PM. Book as many hours as you like.</p></div>
+  <div class="pc"><h3>1 hour · day</h3><div class="n">₹100 <small>/ hr</small></div><p>11 AM to 5 PM. Best value for long sessions.</p></div>
+  <div class="pc"><h3>1 hour · evening</h3><div class="n">₹120 <small>/ hr</small></div><p>5 PM to 10 PM and busy hours.</p></div>
+  <div class="pc"><h3>10-hour pack</h3><div class="n">₹900 <small>/ 10 hrs</small></div><p>Pay once, play any day. Your save stays on your own profile.</p></div>
+ </div>
+</section>
+
+<section id="feedback">
+ <div class="h"><h2>Feedback</h2><span>Tell us how it went</span></div>
+ <div class="fb">
+  <div class="panel" style="margin:0">
+   <label>Your rating</label><div class="stars" id="st" role="radiogroup" aria-label="Rating"></div>
+   <div class="f" style="grid-template-columns:1fr"><div><label for="fn">Name</label><input id="fn"></div><div><label for="ft">What did you think?</label><textarea id="ft" rows="3"></textarea></div></div>
+   <button class="btn" id="fs">Send feedback</button><div class="err" id="fe" role="alert"></div>
+  </div>
+  <div><div id="rl"></div></div>
+ </div>
+</section>
+</main>
+
+<footer><div class="wrap">PlayBox Gaming Lounge · Kankroli, Rajsamand, Rajasthan · Open 11 AM to 10 PM, every day<br>Players under 18 need a parent’s OK for mature-rated games.</div></footer>
+
+<script>
+const CFG={api:'https://script.google.com/macros/s/AKfycbwTzUMHbDRVIzOXMMfMPofGV2NLD5IAxop3vYIbrXqVRI8jqcp0QU_FD3tH72a6-RLe/exec',launch:{d:'2026-11-21',h:14},offer:{price:80,count:10},wa:'919999999999',upi:'yourname@upi',shop:'PlayBox',open:11,close:22};
+const GAMES=[['GTA VI','linear-gradient(160deg,#ff3d8b,#ffb02e 60%,#14062b)','Open world','1P'],['GTA V','linear-gradient(160deg,#1f7a3a,#0b1f12 85%)','Open world','1P'],['Spider-Man','linear-gradient(160deg,#c1121f,#1b2a6b)','Action','1P'],['FIFA','linear-gradient(160deg,#0b6b3a,#7dff3a 90%)','Football','1–2P'],['Tekken','linear-gradient(160deg,#241a4d,#ff7a00)','Fighting','1–2P'],['Asphalt','linear-gradient(160deg,#0a2a52,#2ec4ff)','Racing','1P']];
+const $=id=>document.getElementById(id);
+const pad=n=>String(n).padStart(2,'0');
+const dk=o=>{const d=new Date();d.setDate(d.getDate()+o);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())};
+const dl=o=>{const d=new Date();d.setDate(d.getDate()+o);return o===0?'Today':o===1?'Tomorrow':d.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'})};
+const hl=h=>(h%12||12)+':00 '+(h<12?'AM':'PM');
+const price=h=>h>=17?120:100;
+const DAY=864e5,START=Math.max(0,Math.round((new Date(CFG.launch.d+'T00:00:00')-new Date(new Date().toDateString()))/DAY));
+let off=START,sel=[],left=CFG.offer.count,taken={},db=null,fbList=[],stars=0;
+const cost=t=>left>0?CFG.offer.price:price(t);
+const closed=(o,t)=>dk(o)<CFG.launch.d||(dk(o)===CFG.launch.d&&t<CFG.launch.h);
+const isPast=(o,t)=>o===0&&t<=new Date().getHours();
+const total=()=>sel.reduce((a,id)=>a+cost(+id.split('_')[1]),0);
+function summ(){
+  const by={};sel.forEach(id=>{const[d,h]=id.split('_');(by[d]=by[d]||[]).push(+h)});
+  return Object.keys(by).sort().map(d=>{const hs=by[d].sort((a,b)=>a-b),r=[];let st=hs[0],pv=st;
+    hs.slice(1).forEach(h=>{if(h===pv+1)pv=h;else{r.push([st,pv]);st=pv=h}});r.push([st,pv]);
+    const o=Math.round((new Date(d+'T00:00:00')-new Date(new Date().toDateString()))/DAY);
+    return dl(o)+' '+r.map(x=>hl(x[0])+' to '+hl(x[1]+1)).join(', ')}).join(' · ');
+}
+
+$('gm').innerHTML=GAMES.map(g=>'<option>'+g[0]+'</option>').join('');
+$('gl').innerHTML=GAMES.map(g=>'<div class="g"><div class="c" style="background:'+g[1]+'">'+g[0]+'</div><div class="m"><span>'+g[2]+'</span><b>'+g[3]+'</b></div></div>').join('');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const WEEK=Array.from({length:7},(_,i)=>START+i);
+$('days').innerHTML='<button class="day" data-o="w" aria-pressed="false">Whole week</button>'+WEEK.map(o=>'<button class="day" data-o="'+o+'" aria-pressed="'+(o===START)+'">'+dl(o)+'</button>').join('');
+$('days').onclick=e=>{const b=e.target.closest('.day');if(!b)return;off=b.dataset.o==='w'?'w':+b.dataset.o;[...$('days').children].forEach(x=>x.setAttribute('aria-pressed',x===b));draw()};
+const state=(o,t,id)=>taken[id]?'Booked':closed(o,t)?'Not open yet':isPast(o,t)?'Passed':'';
+function draw(){
+  $('grid').className=off==='w'?'wk':'grid';
+  off==='w'?drawWeek():drawDay();
+  const of=$('offer');of.hidden=left<=0;of.textContent='Opening offer: ₹'+CFG.offer.price+' per hour for the first '+CFG.offer.count+' customers. '+left+' of '+CFG.offer.count+' spots left.';
+}
+function drawDay(){
+  let h='';
+  for(let t=CFG.open;t<CFG.close;t++){
+    const id=dk(off)+'_'+t,st=state(off,t,id);
+    h+='<button class="slot'+(sel.includes(id)?' sel':'')+'" data-id="'+id+'" data-h="'+t+'"'+(st?' disabled':'')+'><b>'+hl(t)+'</b><small>'+(st||'Free · ₹'+cost(t))+'</small></button>';
+  }
+  $('grid').innerHTML=h;
+}
+function drawWeek(){
+  const owner=location.hash==='#owner';
+  let h='<table><thead><tr><th></th>'+WEEK.map(o=>'<th scope="col">'+dl(o)+'</th>').join('')+'</tr></thead><tbody>';
+  for(let t=CFG.open;t<CFG.close;t++){
+    h+='<tr><th class="t" scope="row">'+hl(t)+'</th>';
+    WEEK.forEach(o=>{
+      const id=dk(o)+'_'+t,tk=taken[id],st=state(o,t,id);
+      let txt=tk?'Booked':st?'—':'Free<small>₹'+cost(t)+'</small>';
+      if(tk&&owner&&tk.name)txt+='<small>'+esc(tk.name)+(tk.g?' · '+esc(tk.g):'')+'</small>';
+      h+='<td><button class="wc'+(st&&!tk?' p':'')+(sel.includes(id)?' sel':'')+'" data-id="'+id+'" data-h="'+t+'"'+(st?' disabled':'')+' aria-label="'+esc(dl(o)+' '+hl(t)+' '+(st||'free'))+'">'+txt+'</button></td>';
+    });
+    h+='</tr>';
+  }
+  $('grid').innerHTML=h+'</tbody></table>';
+}
+function showBook(){
+  $('done').hidden=true;$('er').textContent='';
+  if(!sel.length){$('book').hidden=true;return}
+  $('bt').textContent=sel.length+' hour'+(sel.length>1?'s':'')+' · '+summ()+' · ₹'+total();
+  $('book').hidden=false;
+}
+$('grid').onclick=e=>{
+  const b=e.target.closest('.slot,.wc');if(!b||b.disabled)return;
+  const id=b.dataset.id;sel=sel.includes(id)?sel.filter(x=>x!==id):[...sel,id];
+  draw();showBook();
+};
+window.addEventListener('hashchange',draw);
+
+$('go').onclick=async()=>{
+  const nm=$('nm').value.trim(),ph=$('ph').value.replace(/\D/g,''),gm=$('gm').value;
+  if(nm.length<2)return $('er').textContent='Please enter your name.';
+  if(ph.length<10)return $('er').textContent='Please enter a 10-digit phone number.';
+  if(!sel.length)return;
+  if(sel.some(id=>taken[id])){sel=sel.filter(id=>!taken[id]);draw();showBook();return $('er').textContent='One of your slots was just taken. Check your selection.'}
+  const when=summ(),first=nm.split(' ')[0];let amt=total(),saved=false;
+  $('go').disabled=true;$('er').textContent='';
+  if(CFG.api){
+    try{
+      const r=await fetch(CFG.api,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({ids:sel,when:when,name:nm,phone:ph,game:gm})});
+      const j=await r.json();
+      if(j.ok){saved=true;amt=j.amount;if(typeof j.left==='number')left=j.left}
+      else{$('go').disabled=false;
+        if(j.error==='taken'){(j.slots||[]).forEach(id=>{taken[id]={taken:true}});sel=sel.filter(id=>!taken[id]);draw();showBook();return $('er').textContent='Some slots were just taken and removed. Check your selection.'}
+        return $('er').textContent=j.error==='closed'?'Some slots are before our opening time.':'Could not save your booking. Please try again.'}
+    }catch(e){$('go').disabled=false;return $('er').textContent='Could not reach the booking server. Check your internet and try again.'}
+  }else{
+    if(left>0)left--;
+  }
+  sel.forEach(id=>{taken[id]={taken:true,name:first,g:gm}});
+  $('go').disabled=false;
+  const d=$('done');d.hidden=false;$('book').hidden=true;
+  d.innerHTML='<h3 style="font-size:22px"></h3><p style="margin:8px 0 14px"></p><div class="row" style="display:flex;gap:12px;flex-wrap:wrap"></div><div class="note"></div>';
+  d.querySelector('h3').textContent=saved?'Slots reserved':'Reserved on this device only';
+  d.querySelector('p').textContent=when+' · '+gm+' · ₹'+amt+(saved?'. Your booking is confirmed. Just show up and pay at the counter, or pay by UPI below.':'. The booking server is not connected, so other visitors cannot see this booking yet.');
+  const r=d.querySelector('.row');
+  r.innerHTML='<a class="btn o">Pay ₹'+amt+' by UPI</a>';
+  r.children[0].href='upi://pay?pa='+CFG.upi+'&pn='+encodeURIComponent(CFG.shop)+'&am='+amt+'&cu=INR&tn='+encodeURIComponent('Game slots '+when);
+  d.querySelector('.note').textContent='UPI link works on a phone with GPay, PhonePe or Paytm. Your slot is held for 10 minutes after the start time.';
+  sel=[];draw();
+};
+
+for(let i=1;i<=5;i++){const b=document.createElement('button');b.className='star';b.textContent='★';b.setAttribute('aria-label',i+' stars');b.onclick=()=>{stars=i;[...$('st').children].forEach((x,j)=>x.classList.toggle('on',j<i))};$('st').appendChild(b)}
+function drawFb(){
+  const l=$('rl');l.innerHTML='';
+  if(!fbList.length){l.innerHTML='<div class="note">No reviews yet. Be the first to share how your session went.</div>';return}
+  fbList.slice(0,8).forEach(f=>{const d=document.createElement('div');d.className='rv';d.innerHTML='<div class="s"></div><p></p><small></small>';d.children[0].textContent='★'.repeat(f.stars)+'☆'.repeat(5-f.stars);d.children[1].textContent=f.text;d.children[2].textContent=f.name;l.appendChild(d)});
+}
+$('fs').onclick=async()=>{
+  const name=$('fn').value.trim()||'Guest',text=$('ft').value.trim();
+  if(!stars)return $('fe').textContent='Tap a star rating first.';
+  if(text.length<3)return $('fe').textContent='Add a short comment.';
+  const f={name,text,stars,t:Date.now()};
+  try{if(db)await db.collection('feedback').add(f)}catch(e){}
+  if(!db)fbList.unshift(f);
+  $('fn').value='';$('ft').value='';stars=0;[...$('st').children].forEach(x=>x.classList.remove('on'));$('fe').textContent='';drawFb();
+};
+
+draw();drawFb();
+function loadTaken(){
+  fetch(CFG.api).then(r=>r.json()).then(j=>{taken={};(j.slots||[]).forEach(id=>{taken[id]={taken:true}});if(typeof j.left==='number')left=j.left;draw();if(sel.length)showBook()}).catch(()=>{});
+}
+(async()=>{
+  if(CFG.api){$('live').textContent='Live availability';loadTaken();setInterval(loadTaken,30000)}
+  const off_=()=>{if(!CFG.api)$('live').textContent='Booking server not connected yet.'};
+  try{
+    db=window.claude&&await window.claude.use('db');
+    if(!db){off_();return}
+    if(!CFG.api){$('live').textContent='Live availability';db.collection('slots').onSnapshot(s=>{taken={};s.docs.forEach(d=>{taken[d.id]=d.data()||{taken:true}});draw()},()=>{})}
+    db.collection('feedback').onSnapshot(s=>{fbList=s.docs.map(d=>d.data()).sort((a,b)=>b.t-a.t);drawFb()},()=>{});
+  }catch(e){off_()}
+})();
+</script>
+</body>
+</html>
